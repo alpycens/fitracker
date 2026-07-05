@@ -189,6 +189,8 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .hint{font-size:11.5px;color:var(--faint);margin-top:8px;line-height:1.5}
 .divider{height:1px;background:var(--border);margin:16px 0}
 .footer-note{text-align:center;color:var(--faint);font-size:11px;padding:24px 0 8px}
+.backup-bar{display:flex;gap:8px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+.backup-bar .btn{flex:1 1 150px;max-width:220px;text-align:center}
 @media(max-width:520px){
   .grid4{grid-template-columns:repeat(2,1fr)}
   .dash-kcal{font-size:46px}
@@ -519,7 +521,12 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
     </div>
   </div>
 
-  <div class="footer-note">Tüm veriler yalnızca bu cihazda (tarayıcı hafızasında) saklanır.</div>
+  <div class="backup-bar">
+    <button class="btn ghost sm" id="btnExport">↓ Logu Çıkar (JSON)</button>
+    <button class="btn ghost sm" id="btnImport">↑ Log Yükle</button>
+    <input type="file" id="importFile" accept="application/json,.json" style="display:none">
+  </div>
+  <div class="footer-note">Veriler bu cihazın tarayıcı hafızasında saklanır. Başka cihaza taşımak için "Logu Çıkar" ile JSON indir, diğer tarafta "Log Yükle" ile aç.</div>
 </div>
 
 <script>
@@ -528,9 +535,293 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 ============================================================ */
 const KEY='formlog_v1';
 const DEFAULT={foods:[], log:{}, weights:[], workouts:{}, programs:[], exercises:[], targets:{kcal:2400,p:180,c:250,f:70}};
+/* Başlangıç (seed) verisi: tarayıcı hafızası boşsa ilk açılışta bu gösterilir.
+   Kullanıcı bir şey değiştirince kendi verisi hafızaya kaydolur ve bundan sonra o yüklenir. */
+const SEED={
+  "foods": [
+    {
+      "id": "mr8asttm6qke",
+      "name": "Tavuk gogsu",
+      "basis": "100g",
+      "kcal": 115,
+      "p": 21,
+      "c": 0,
+      "f": 3.3
+    }
+  ],
+  "log": {
+    "2026-07-05": [
+      {
+        "id": "mr8ayha5a79s",
+        "foodId": "mr8asttm6qke",
+        "amount": 400
+      }
+    ]
+  },
+  "weights": [
+    {
+      "date": "2026-07-04",
+      "weight": 93.3
+    }
+  ],
+  "workouts": {
+    "2026-07-05": {
+      "lifts": [
+        {
+          "id": "mr8b5ltzw2uu",
+          "name": "Bench press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 100
+        },
+        {
+          "id": "mr8b5ltzole4",
+          "name": "Incline Machine Press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b5ltzrm7o",
+          "name": "Fly",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b5ltz569v",
+          "name": "Triceps push down",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ],
+      "cardio": [],
+      "note": ""
+    }
+  },
+  "programs": [
+    {
+      "id": "mr8aho02uv5f",
+      "name": "Chest",
+      "exercises": [
+        {
+          "id": "mr8ajrf9qxap",
+          "exId": "mr8ahw55t1dv",
+          "name": "Bench press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ak2odgvy7",
+          "exId": "mr8ai7d4465u",
+          "name": "Incline Machine Press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ak9hg3p17",
+          "exId": "mr8aieaeh718",
+          "name": "Fly",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8akn67kv2r",
+          "exId": "mr8akh7d51xr",
+          "name": "Triceps push down",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "mr8aucn9wnt4",
+      "name": "PULL",
+      "exercises": [
+        {
+          "id": "mr8axiobcm7z",
+          "exId": "mr8auogqn6oa",
+          "name": "Hammer machine row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axn1q0ye9",
+          "exId": "mr8avhzdq5h8",
+          "name": "Single arm dikey row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axrd9t9n9",
+          "exId": "mr8auy7830sb",
+          "name": "Chest supported machine row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axwcwphg1",
+          "exId": "mr8avsbdlf3j",
+          "name": "Chest supported DB row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ay125nif2",
+          "exId": "mr8aw1f82eu1",
+          "name": "Curl machine",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "mr8az8xh45pi",
+      "name": "Omuz",
+      "exercises": [
+        {
+          "id": "mr8b3nqw0bau",
+          "exId": "mr8azhsk16l3",
+          "name": "OHP Machine",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b40sh9yw6",
+          "exId": "mr8azzqeo2bd",
+          "name": "Upright row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b45zex55u",
+          "exId": "mr8b0sgmr6kq",
+          "name": "Rear delt",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b4bsifnn2",
+          "exId": "mr8b10ne9e2j",
+          "name": "Lateral raise",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b4gydv0h1",
+          "exId": "mr8b17fa1max",
+          "name": "Forearm",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mr8ahw55t1dv",
+      "name": "Bench press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8ai12ejhno",
+      "name": "Incline DB Press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8ai7d4465u",
+      "name": "Incline Machine Press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8aieaeh718",
+      "name": "Fly",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8akh7d51xr",
+      "name": "Triceps push down",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8auogqn6oa",
+      "name": "Hammer machine row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8auy7830sb",
+      "name": "Chest supported machine row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8avhzdq5h8",
+      "name": "Single arm dikey row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8avsbdlf3j",
+      "name": "Chest supported DB row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8aw1f82eu1",
+      "name": "Curl machine",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8azhsk16l3",
+      "name": "OHP Machine",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8azzqeo2bd",
+      "name": "Upright row",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b0sgmr6kq",
+      "name": "Rear delt",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b10ne9e2j",
+      "name": "Lateral raise",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b17fa1max",
+      "name": "Forearm",
+      "muscle": "Omuz"
+    }
+  ],
+  "targets": {
+    "kcal": 1500,
+    "p": 150,
+    "c": 123,
+    "f": 80
+  }
+};
 let S;
-try{ S=Object.assign({}, DEFAULT, JSON.parse(localStorage.getItem(KEY)||'{}')); }
-catch(e){ S=structuredClone(DEFAULT); }
+try{
+  const saved=localStorage.getItem(KEY);
+  S = saved ? Object.assign({}, DEFAULT, JSON.parse(saved)) : structuredClone(SEED);
+}catch(e){ S=structuredClone(SEED); }
+S=Object.assign({}, DEFAULT, S);
 S.targets=Object.assign({}, DEFAULT.targets, S.targets||{});
 function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
@@ -1183,6 +1474,38 @@ $('cardioList').addEventListener('click',e=>{
 $('tDate').addEventListener('change',()=>{ tDate=$('tDate').value||todayISO(); renderTraining(); });
 $('tDayPrev').addEventListener('click',()=>{ tDate=shiftISO(tDate,-1); renderTraining(); });
 $('tDayNext').addEventListener('click',()=>{ tDate=shiftISO(tDate,1); renderTraining(); });
+
+/* ============================================================
+   LOG ÇIKAR / LOG YÜKLE (yedek)
+============================================================ */
+$('btnExport').addEventListener('click',()=>{
+  const blob=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url; a.download='formlog-'+todayISO()+'.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  toast('Log indirildi');
+});
+$('btnImport').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',e=>{
+  const file=e.target.files[0]; if(!file) return;
+  const r=new FileReader();
+  r.onload=()=>{
+    try{
+      const data=JSON.parse(r.result);
+      if(typeof data!=='object'||data===null||Array.isArray(data)) throw new Error('bad');
+      if(!confirm('Mevcut veriler bu logla değiştirilsin mi? Şu anki veriler silinir.')){ e.target.value=''; return; }
+      S=Object.assign({}, DEFAULT, data);
+      S.targets=Object.assign({}, DEFAULT.targets, S.targets||{});
+      save();
+      fillFoodSelect(); renderFoods(); renderDay(); renderWeights(); renderTraining(); renderPrograms(); renderExercises();
+      toast('Log yüklendi');
+    }catch(err){ alert('Geçersiz dosya. Doğru JSON logunu seçtiğinden emin ol.'); }
+    finally{ e.target.value=''; }
+  };
+  r.readAsText(file);
+});
 
 /* ============================================================
    INIT
