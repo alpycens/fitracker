@@ -1650,10 +1650,12 @@ const SEED={
 };
 const SEED_VERSION = 2; /* Referans listesi sürümü. SEED içeriği değişince artır. */
 let S;
+let __hadSaved = false;
 try{
   const saved=localStorage.getItem(KEY);
+  __hadSaved = !!saved;
   S = saved ? Object.assign({}, DEFAULT, JSON.parse(saved)) : structuredClone(SEED);
-}catch(e){ S=structuredClone(SEED); }
+}catch(e){ S=structuredClone(SEED); __hadSaved=false; }
 S=Object.assign({}, DEFAULT, S);
 S.targets=Object.assign({}, DEFAULT.targets, S.targets||{});
 function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
@@ -1662,12 +1664,11 @@ function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
 function maybePromptSeedUpdate(){
   const cur = +(S._seedVersion || 0);
   if(cur >= SEED_VERSION) return;
-  /* İlk kez SEED'den kuruluyorsa (kayıt yoktu) — sessizce sürümü işaretle */
-  const wasEmpty = !localStorage.getItem(KEY+'_seenOnce');
-  localStorage.setItem(KEY+'_seenOnce','1');
-  if(wasEmpty && cur===0){
+  /* Yeni kullanıcı (kayıt hiç yoktu) → sessizce sürümü işaretle, soru sorma */
+  if(!__hadSaved){
     S._seedVersion = SEED_VERSION; save(); return;
   }
+  /* Mevcut kullanıcı → sor */
   const ok = confirm(
     'Yeni referans listesi geldi (sürüm '+SEED_VERSION+').\n\n'+
     'Güncellenecekler: hazır besinler, egzersizler ve programlar.\n'+
