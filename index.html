@@ -100,6 +100,24 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
 .fc-macros input{background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:6px 8px;font-size:13.5px;font-family:var(--display);font-weight:600;outline:none;width:100%;text-align:center}
 .fc-macros input:focus{border-color:var(--volt-dim);background:var(--surface3)}
 .food-empty{text-align:center;color:var(--faint);font-size:13px;padding:22px 12px}
+.fp{position:relative}
+.fp-btn{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:11px 12px;font-size:14px;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:8px;font-family:inherit;cursor:pointer;transition:border-color .15s}
+.fp-btn:hover{border-color:var(--border2)}
+.fp.open .fp-btn{border-color:var(--volt-dim);background:var(--surface3)}
+.fp-btn #fpLabel{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.fp-btn .fp-caret{color:var(--muted);font-size:11px;transition:transform .15s}
+.fp.open .fp-btn .fp-caret{transform:rotate(180deg)}
+.fp-drop{position:absolute;top:calc(100% + 4px);left:0;right:0;z-index:15;background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);box-shadow:0 12px 32px rgba(0,0,0,.5);overflow:hidden}
+.fp-search-wrap{padding:8px;border-bottom:1px solid var(--border)}
+.fp-search{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);padding:8px 10px;font-size:13.5px;outline:none;font-family:inherit}
+.fp-search:focus{border-color:var(--volt-dim)}
+.fp-list{max-height:260px;overflow-y:auto}
+.fp-opt{padding:9px 12px;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid var(--border)}
+.fp-opt:last-child{border-bottom:none}
+.fp-opt:hover,.fp-opt.hl{background:var(--surface3)}
+.fp-opt .fp-nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fp-opt .fp-kc{color:var(--muted);font-family:var(--display);font-size:12.5px;font-weight:600;flex-shrink:0}
+.fp-empty{padding:16px 12px;text-align:center;color:var(--faint);font-size:12.5px}
 .food-item{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;display:flex;align-items:center;gap:12px}
 .food-item .fi-main{flex:1;min-width:0}
 .food-item .fi-name{font-weight:600;font-size:14.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -293,7 +311,15 @@ select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='ht
       <div class="card-title">Öğün Ekle</div>
       <div class="field">
         <label class="lbl">Besin</label>
-        <select id="logFood"><option value="">— besin seç —</option></select>
+        <div class="fp" id="foodPicker">
+          <button type="button" class="fp-btn" id="fpBtn"><span id="fpLabel">— besin seç —</span><span class="fp-caret">▾</span></button>
+          <div class="fp-drop" id="fpDrop" style="display:none">
+            <div class="fp-search-wrap">
+              <input type="text" class="fp-search" id="fpSearch" placeholder="🔍 Besin ara" autocomplete="off">
+            </div>
+            <div class="fp-list" id="fpList"></div>
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="field" style="flex:2">
@@ -1764,35 +1790,91 @@ $('foodList').addEventListener('click',e=>{
    GÜNLÜK
 ============================================================ */
 let gDate=todayISO();
+let fpSelectedId='';
+let fpQuery='';
+let fpHl=0;
+
 function fillFoodSelect(){
-  const sel=$('logFood'); const cur=sel.value;
-  sel.innerHTML='<option value="">— besin seç —</option>'+
-    S.foods.slice().sort((a,b)=>a.name.localeCompare(b.name,'tr'))
-    .map(f=>`<option value="${f.id}">${esc(f.name)}</option>`).join('');
-  sel.value=cur;
+  // Re-render picker so any name/food changes are reflected
+  renderFoodPicker();
+  // If the selected food was deleted, clear the selection
+  if(fpSelectedId && !S.foods.some(f=>f.id===fpSelectedId)){
+    fpSelectedId=''; $('fpLabel').textContent='— besin seç —';
+  }else if(fpSelectedId){
+    const f=S.foods.find(x=>x.id===fpSelectedId);
+    if(f) $('fpLabel').textContent=f.name;
+  }
 }
+function fpFiltered(){
+  const q=fpQuery.toLocaleLowerCase('tr').trim();
+  const norm=s=>String(s||'').toLocaleLowerCase('tr');
+  return S.foods.slice().sort((a,b)=>a.name.localeCompare(b.name,'tr')).filter(f=>!q||norm(f.name).includes(q));
+}
+function renderFoodPicker(){
+  const list=$('fpList');
+  const items=fpFiltered();
+  if(fpHl>=items.length) fpHl=Math.max(0,items.length-1);
+  if(!items.length){ list.innerHTML=`<div class="fp-empty">Eşleşen besin yok</div>`; return; }
+  list.innerHTML=items.map((f,i)=>`
+    <div class="fp-opt${i===fpHl?' hl':''}" data-fid="${f.id}">
+      <span class="fp-nm">${esc(f.name)}</span>
+      <span class="fp-kc">${round(f.kcal)} kcal</span>
+    </div>`).join('');
+}
+function fpOpen(){
+  const p=$('foodPicker'); p.classList.add('open'); $('fpDrop').style.display='block';
+  fpQuery=''; $('fpSearch').value=''; fpHl=0; renderFoodPicker();
+  setTimeout(()=>$('fpSearch').focus(),0);
+}
+function fpClose(){ $('foodPicker').classList.remove('open'); $('fpDrop').style.display='none'; }
+function fpPick(id){
+  const f=S.foods.find(x=>x.id===id); if(!f) return;
+  fpSelectedId=id; $('fpLabel').textContent=f.name;
+  fpClose(); updateAmtLabel();
+  $('logAmt').focus();
+}
+$('fpBtn').addEventListener('click',()=>{
+  if($('foodPicker').classList.contains('open')) fpClose(); else fpOpen();
+});
+$('fpSearch').addEventListener('input',e=>{ fpQuery=e.target.value; fpHl=0; renderFoodPicker(); });
+$('fpSearch').addEventListener('keydown',e=>{
+  const items=fpFiltered();
+  if(e.key==='ArrowDown'){ e.preventDefault(); fpHl=Math.min(items.length-1,fpHl+1); renderFoodPicker(); scrollHl(); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); fpHl=Math.max(0,fpHl-1); renderFoodPicker(); scrollHl(); }
+  else if(e.key==='Enter'){ e.preventDefault(); if(items[fpHl]) fpPick(items[fpHl].id); }
+  else if(e.key==='Escape'){ fpClose(); }
+});
+function scrollHl(){
+  const el=$('fpList').querySelector('.fp-opt.hl'); if(el) el.scrollIntoView({block:'nearest'});
+}
+$('fpList').addEventListener('click',e=>{
+  const opt=e.target.closest('.fp-opt'); if(opt) fpPick(opt.dataset.fid);
+});
+document.addEventListener('click',e=>{
+  if(!$('foodPicker').contains(e.target)) fpClose();
+});
+
 function macrosFor(food,amount){
   const factor=food.basis==='100g' ? amount/100 : amount;
   return {kcal:food.kcal*factor, p:food.p*factor, c:food.c*factor, f:food.f*factor};
 }
-$('logFood').addEventListener('change',updateAmtLabel);
 $('logAmt').addEventListener('input',updatePreview);
 function updateAmtLabel(){
-  const f=S.foods.find(x=>x.id===$('logFood').value);
+  const f=S.foods.find(x=>x.id===fpSelectedId);
   $('logAmtLbl').textContent = f && f.basis==='porsiyon' ? 'Miktar (porsiyon)' : 'Miktar (g)';
   updatePreview();
 }
 function updatePreview(){
-  const f=S.foods.find(x=>x.id===$('logFood').value);
+  const f=S.foods.find(x=>x.id===fpSelectedId);
   const amt=+$('logAmt').value;
   if(!f||!amt){ $('logPreview').textContent=''; return; }
   const m=macrosFor(f,amt);
   $('logPreview').innerHTML=`= <span class="mk">${round(m.kcal)} kcal</span> · <span class="mp">P ${round(m.p,1)}g</span> · <span class="mc">K ${round(m.c,1)}g</span> · <span class="mf">Y ${round(m.f,1)}g</span>`;
 }
 $('logAdd').addEventListener('click',()=>{
-  const f=S.foods.find(x=>x.id===$('logFood').value);
+  const f=S.foods.find(x=>x.id===fpSelectedId);
   const amt=+$('logAmt').value;
-  if(!f){ $('logFood').focus(); return; }
+  if(!f){ fpOpen(); return; }
   if(!amt||amt<=0){ $('logAmt').focus(); return; }
   (S.log[gDate]=S.log[gDate]||[]).push({id:uid(),foodId:f.id,amount:amt});
   save(); $('logAmt').value=''; $('logPreview').textContent=''; renderDay();
