@@ -1,0 +1,1067 @@
+{
+  "foods": [
+    {
+      "id": "mr8asttm6qke",
+      "name": "Tavuk gogsu",
+      "basis": "100g",
+      "kcal": 115,
+      "p": 21,
+      "c": 0,
+      "f": 3.3
+    },
+    {
+      "id": "seed_000",
+      "name": "Tavuk göğsü (çiğ)",
+      "basis": "100g",
+      "kcal": 115,
+      "p": 21,
+      "c": 0,
+      "f": 3.3
+    },
+    {
+      "id": "seed_001",
+      "name": "Tavuk but (derisiz, çiğ)",
+      "basis": "100g",
+      "kcal": 121,
+      "p": 19,
+      "c": 0,
+      "f": 4.5
+    },
+    {
+      "id": "seed_002",
+      "name": "Hindi göğsü (çiğ)",
+      "basis": "100g",
+      "kcal": 109,
+      "p": 22,
+      "c": 0,
+      "f": 1.7
+    },
+    {
+      "id": "seed_003",
+      "name": "Dana kıyma (%90 yağsız)",
+      "basis": "100g",
+      "kcal": 176,
+      "p": 20,
+      "c": 0,
+      "f": 10
+    },
+    {
+      "id": "seed_004",
+      "name": "Dana bonfile (çiğ)",
+      "basis": "100g",
+      "kcal": 143,
+      "p": 22,
+      "c": 0,
+      "f": 5.7
+    },
+    {
+      "id": "seed_005",
+      "name": "Kuzu but (çiğ)",
+      "basis": "100g",
+      "kcal": 201,
+      "p": 20,
+      "c": 0,
+      "f": 13
+    },
+    {
+      "id": "seed_006",
+      "name": "Somon (çiğ)",
+      "basis": "100g",
+      "kcal": 208,
+      "p": 20,
+      "c": 0,
+      "f": 13
+    },
+    {
+      "id": "seed_007",
+      "name": "Ton balığı (suda, konserve)",
+      "basis": "100g",
+      "kcal": 116,
+      "p": 26,
+      "c": 0,
+      "f": 1
+    },
+    {
+      "id": "seed_008",
+      "name": "Levrek (çiğ)",
+      "basis": "100g",
+      "kcal": 97,
+      "p": 18,
+      "c": 0,
+      "f": 2.5
+    },
+    {
+      "id": "seed_009",
+      "name": "Yumurta (bütün)",
+      "basis": "100g",
+      "kcal": 143,
+      "p": 12.6,
+      "c": 0.7,
+      "f": 9.5
+    },
+    {
+      "id": "seed_010",
+      "name": "Yumurta akı",
+      "basis": "100g",
+      "kcal": 52,
+      "p": 10.9,
+      "c": 0.7,
+      "f": 0.2
+    },
+    {
+      "id": "seed_011",
+      "name": "Yumurta sarısı",
+      "basis": "100g",
+      "kcal": 322,
+      "p": 15.9,
+      "c": 3.6,
+      "f": 26.5
+    },
+    {
+      "id": "seed_012",
+      "name": "Süt (tam yağlı)",
+      "basis": "100g",
+      "kcal": 61,
+      "p": 3.2,
+      "c": 4.8,
+      "f": 3.3
+    },
+    {
+      "id": "seed_013",
+      "name": "Süt (yarım yağlı)",
+      "basis": "100g",
+      "kcal": 46,
+      "p": 3.4,
+      "c": 4.8,
+      "f": 1.8
+    },
+    {
+      "id": "seed_014",
+      "name": "Yoğurt (tam yağlı, sade)",
+      "basis": "100g",
+      "kcal": 61,
+      "p": 3.5,
+      "c": 4.7,
+      "f": 3.3
+    },
+    {
+      "id": "seed_015",
+      "name": "Yoğurt (yağsız, sade)",
+      "basis": "100g",
+      "kcal": 56,
+      "p": 5.7,
+      "c": 7.7,
+      "f": 0.2
+    },
+    {
+      "id": "seed_016",
+      "name": "Yunan yoğurdu (%10 yağ)",
+      "basis": "100g",
+      "kcal": 133,
+      "p": 5.7,
+      "c": 3.6,
+      "f": 10
+    },
+    {
+      "id": "seed_017",
+      "name": "Yunan yoğurdu (%2 yağ)",
+      "basis": "100g",
+      "kcal": 73,
+      "p": 10,
+      "c": 3.6,
+      "f": 2
+    },
+    {
+      "id": "seed_018",
+      "name": "Yunan yoğurdu (%0 yağ)",
+      "basis": "100g",
+      "kcal": 59,
+      "p": 10.3,
+      "c": 3.6,
+      "f": 0.4
+    },
+    {
+      "id": "seed_019",
+      "name": "Tesco Greek Style Yogurt",
+      "basis": "100g",
+      "kcal": 133,
+      "p": 5.7,
+      "c": 3.6,
+      "f": 10
+    },
+    {
+      "id": "seed_020",
+      "name": "Süzme peynir (light)",
+      "basis": "100g",
+      "kcal": 98,
+      "p": 11,
+      "c": 3.4,
+      "f": 4.3
+    },
+    {
+      "id": "seed_021",
+      "name": "Beyaz peynir (yağlı)",
+      "basis": "100g",
+      "kcal": 264,
+      "p": 17,
+      "c": 1.5,
+      "f": 21
+    },
+    {
+      "id": "seed_022",
+      "name": "Kaşar peynir",
+      "basis": "100g",
+      "kcal": 376,
+      "p": 25,
+      "c": 2,
+      "f": 30
+    },
+    {
+      "id": "seed_023",
+      "name": "Mozzarella",
+      "basis": "100g",
+      "kcal": 280,
+      "p": 22,
+      "c": 2.2,
+      "f": 17
+    },
+    {
+      "id": "seed_024",
+      "name": "Lor peyniri",
+      "basis": "100g",
+      "kcal": 105,
+      "p": 11,
+      "c": 3.6,
+      "f": 4.3
+    },
+    {
+      "id": "seed_025",
+      "name": "Tereyağı",
+      "basis": "100g",
+      "kcal": 717,
+      "p": 0.9,
+      "c": 0.1,
+      "f": 81
+    },
+    {
+      "id": "seed_026",
+      "name": "Beyaz pirinç (pişmiş)",
+      "basis": "100g",
+      "kcal": 130,
+      "p": 2.7,
+      "c": 28,
+      "f": 0.3
+    },
+    {
+      "id": "seed_027",
+      "name": "Beyaz pirinç (çiğ)",
+      "basis": "100g",
+      "kcal": 365,
+      "p": 7.1,
+      "c": 80,
+      "f": 0.7
+    },
+    {
+      "id": "seed_028",
+      "name": "Basmati pirinç (pişmiş)",
+      "basis": "100g",
+      "kcal": 121,
+      "p": 3,
+      "c": 25.2,
+      "f": 0.4
+    },
+    {
+      "id": "seed_029",
+      "name": "Esmer pirinç (pişmiş)",
+      "basis": "100g",
+      "kcal": 112,
+      "p": 2.6,
+      "c": 23,
+      "f": 0.9
+    },
+    {
+      "id": "seed_030",
+      "name": "Bulgur (pişmiş)",
+      "basis": "100g",
+      "kcal": 83,
+      "p": 3.1,
+      "c": 18.6,
+      "f": 0.2
+    },
+    {
+      "id": "seed_031",
+      "name": "Bulgur (çiğ)",
+      "basis": "100g",
+      "kcal": 342,
+      "p": 12.3,
+      "c": 76,
+      "f": 1.3
+    },
+    {
+      "id": "seed_032",
+      "name": "Makarna (pişmiş)",
+      "basis": "100g",
+      "kcal": 131,
+      "p": 5,
+      "c": 25,
+      "f": 1.1
+    },
+    {
+      "id": "seed_033",
+      "name": "Makarna (çiğ)",
+      "basis": "100g",
+      "kcal": 371,
+      "p": 13,
+      "c": 75,
+      "f": 1.5
+    },
+    {
+      "id": "seed_034",
+      "name": "Tam buğday makarna (pişmiş)",
+      "basis": "100g",
+      "kcal": 124,
+      "p": 5.3,
+      "c": 26.5,
+      "f": 1.4
+    },
+    {
+      "id": "seed_035",
+      "name": "Yulaf ezmesi (çiğ)",
+      "basis": "100g",
+      "kcal": 389,
+      "p": 16.9,
+      "c": 66.3,
+      "f": 6.9
+    },
+    {
+      "id": "seed_036",
+      "name": "Kinoa (pişmiş)",
+      "basis": "100g",
+      "kcal": 120,
+      "p": 4.4,
+      "c": 21.3,
+      "f": 1.9
+    },
+    {
+      "id": "seed_037",
+      "name": "Ekmek (beyaz)",
+      "basis": "100g",
+      "kcal": 265,
+      "p": 9,
+      "c": 49,
+      "f": 3.2
+    },
+    {
+      "id": "seed_038",
+      "name": "Tam buğday ekmeği",
+      "basis": "100g",
+      "kcal": 247,
+      "p": 13,
+      "c": 41,
+      "f": 4.2
+    },
+    {
+      "id": "seed_039",
+      "name": "Çavdar ekmeği",
+      "basis": "100g",
+      "kcal": 259,
+      "p": 8.5,
+      "c": 48.3,
+      "f": 3.3
+    },
+    {
+      "id": "seed_040",
+      "name": "Lavaş",
+      "basis": "100g",
+      "kcal": 275,
+      "p": 9.1,
+      "c": 55.7,
+      "f": 1.2
+    },
+    {
+      "id": "seed_041",
+      "name": "Bazlama",
+      "basis": "100g",
+      "kcal": 260,
+      "p": 8,
+      "c": 52,
+      "f": 1.5
+    },
+    {
+      "id": "seed_042",
+      "name": "Simit",
+      "basis": "100g",
+      "kcal": 301,
+      "p": 9.8,
+      "c": 57.6,
+      "f": 3.8
+    },
+    {
+      "id": "seed_043",
+      "name": "Mısır (haşlanmış)",
+      "basis": "100g",
+      "kcal": 96,
+      "p": 3.4,
+      "c": 21,
+      "f": 1.5
+    },
+    {
+      "id": "seed_044",
+      "name": "Mercimek (pişmiş)",
+      "basis": "100g",
+      "kcal": 116,
+      "p": 9,
+      "c": 20,
+      "f": 0.4
+    },
+    {
+      "id": "seed_045",
+      "name": "Kırmızı mercimek (çiğ)",
+      "basis": "100g",
+      "kcal": 358,
+      "p": 24.6,
+      "c": 63.4,
+      "f": 1.1
+    },
+    {
+      "id": "seed_046",
+      "name": "Nohut (pişmiş)",
+      "basis": "100g",
+      "kcal": 164,
+      "p": 8.9,
+      "c": 27.4,
+      "f": 2.6
+    },
+    {
+      "id": "seed_047",
+      "name": "Kuru fasulye (pişmiş)",
+      "basis": "100g",
+      "kcal": 127,
+      "p": 8.7,
+      "c": 22.8,
+      "f": 0.5
+    },
+    {
+      "id": "seed_048",
+      "name": "Domates",
+      "basis": "100g",
+      "kcal": 18,
+      "p": 0.9,
+      "c": 3.9,
+      "f": 0.2
+    },
+    {
+      "id": "seed_049",
+      "name": "Salatalık",
+      "basis": "100g",
+      "kcal": 15,
+      "p": 0.7,
+      "c": 3.6,
+      "f": 0.1
+    },
+    {
+      "id": "seed_050",
+      "name": "Marul",
+      "basis": "100g",
+      "kcal": 15,
+      "p": 1.4,
+      "c": 2.9,
+      "f": 0.2
+    },
+    {
+      "id": "seed_051",
+      "name": "Ispanak",
+      "basis": "100g",
+      "kcal": 23,
+      "p": 2.9,
+      "c": 3.6,
+      "f": 0.4
+    },
+    {
+      "id": "seed_052",
+      "name": "Brokoli",
+      "basis": "100g",
+      "kcal": 34,
+      "p": 2.8,
+      "c": 6.6,
+      "f": 0.4
+    },
+    {
+      "id": "seed_053",
+      "name": "Karnabahar",
+      "basis": "100g",
+      "kcal": 25,
+      "p": 1.9,
+      "c": 5,
+      "f": 0.3
+    },
+    {
+      "id": "seed_054",
+      "name": "Havuç",
+      "basis": "100g",
+      "kcal": 41,
+      "p": 0.9,
+      "c": 9.6,
+      "f": 0.2
+    },
+    {
+      "id": "seed_055",
+      "name": "Soğan",
+      "basis": "100g",
+      "kcal": 40,
+      "p": 1.1,
+      "c": 9.3,
+      "f": 0.1
+    },
+    {
+      "id": "seed_056",
+      "name": "Kabak",
+      "basis": "100g",
+      "kcal": 17,
+      "p": 1.2,
+      "c": 3.1,
+      "f": 0.3
+    },
+    {
+      "id": "seed_057",
+      "name": "Patlıcan",
+      "basis": "100g",
+      "kcal": 25,
+      "p": 1,
+      "c": 5.9,
+      "f": 0.2
+    },
+    {
+      "id": "seed_058",
+      "name": "Biber (yeşil)",
+      "basis": "100g",
+      "kcal": 20,
+      "p": 0.9,
+      "c": 4.6,
+      "f": 0.2
+    },
+    {
+      "id": "seed_059",
+      "name": "Patates (pişmiş)",
+      "basis": "100g",
+      "kcal": 87,
+      "p": 1.9,
+      "c": 20.1,
+      "f": 0.1
+    },
+    {
+      "id": "seed_060",
+      "name": "Tatlı patates (pişmiş)",
+      "basis": "100g",
+      "kcal": 90,
+      "p": 2,
+      "c": 20.7,
+      "f": 0.2
+    },
+    {
+      "id": "seed_061",
+      "name": "Muz",
+      "basis": "100g",
+      "kcal": 89,
+      "p": 1.1,
+      "c": 22.8,
+      "f": 0.3
+    },
+    {
+      "id": "seed_062",
+      "name": "Elma",
+      "basis": "100g",
+      "kcal": 52,
+      "p": 0.3,
+      "c": 13.8,
+      "f": 0.2
+    },
+    {
+      "id": "seed_063",
+      "name": "Portakal",
+      "basis": "100g",
+      "kcal": 47,
+      "p": 0.9,
+      "c": 11.8,
+      "f": 0.1
+    },
+    {
+      "id": "seed_064",
+      "name": "Çilek",
+      "basis": "100g",
+      "kcal": 32,
+      "p": 0.7,
+      "c": 7.7,
+      "f": 0.3
+    },
+    {
+      "id": "seed_065",
+      "name": "Yaban mersini",
+      "basis": "100g",
+      "kcal": 57,
+      "p": 0.7,
+      "c": 14.5,
+      "f": 0.3
+    },
+    {
+      "id": "seed_066",
+      "name": "Üzüm",
+      "basis": "100g",
+      "kcal": 69,
+      "p": 0.7,
+      "c": 18.1,
+      "f": 0.2
+    },
+    {
+      "id": "seed_067",
+      "name": "Karpuz",
+      "basis": "100g",
+      "kcal": 30,
+      "p": 0.6,
+      "c": 7.6,
+      "f": 0.2
+    },
+    {
+      "id": "seed_068",
+      "name": "Kavun",
+      "basis": "100g",
+      "kcal": 34,
+      "p": 0.8,
+      "c": 8.2,
+      "f": 0.2
+    },
+    {
+      "id": "seed_069",
+      "name": "Ananas",
+      "basis": "100g",
+      "kcal": 50,
+      "p": 0.5,
+      "c": 13.1,
+      "f": 0.1
+    },
+    {
+      "id": "seed_070",
+      "name": "Avokado",
+      "basis": "100g",
+      "kcal": 160,
+      "p": 2,
+      "c": 8.5,
+      "f": 14.7
+    },
+    {
+      "id": "seed_071",
+      "name": "Hurma",
+      "basis": "100g",
+      "kcal": 277,
+      "p": 1.8,
+      "c": 75,
+      "f": 0.2
+    },
+    {
+      "id": "seed_072",
+      "name": "Badem (çiğ)",
+      "basis": "100g",
+      "kcal": 579,
+      "p": 21.2,
+      "c": 21.6,
+      "f": 49.9
+    },
+    {
+      "id": "seed_073",
+      "name": "Ceviz (çiğ)",
+      "basis": "100g",
+      "kcal": 654,
+      "p": 15.2,
+      "c": 13.7,
+      "f": 65.2
+    },
+    {
+      "id": "seed_074",
+      "name": "Fındık (çiğ)",
+      "basis": "100g",
+      "kcal": 628,
+      "p": 15,
+      "c": 16.7,
+      "f": 60.8
+    },
+    {
+      "id": "seed_075",
+      "name": "Antep fıstığı",
+      "basis": "100g",
+      "kcal": 560,
+      "p": 20.2,
+      "c": 27.2,
+      "f": 45.3
+    },
+    {
+      "id": "seed_076",
+      "name": "Yer fıstığı",
+      "basis": "100g",
+      "kcal": 567,
+      "p": 25.8,
+      "c": 16.1,
+      "f": 49.2
+    },
+    {
+      "id": "seed_077",
+      "name": "Fıstık ezmesi",
+      "basis": "100g",
+      "kcal": 588,
+      "p": 25,
+      "c": 20,
+      "f": 50
+    },
+    {
+      "id": "seed_078",
+      "name": "Chia tohumu",
+      "basis": "100g",
+      "kcal": 486,
+      "p": 17,
+      "c": 42,
+      "f": 31
+    },
+    {
+      "id": "seed_079",
+      "name": "Keten tohumu",
+      "basis": "100g",
+      "kcal": 534,
+      "p": 18.3,
+      "c": 28.9,
+      "f": 42.2
+    },
+    {
+      "id": "seed_080",
+      "name": "Zeytinyağı",
+      "basis": "100g",
+      "kcal": 884,
+      "p": 0,
+      "c": 0,
+      "f": 100
+    },
+    {
+      "id": "seed_081",
+      "name": "Ayçiçek yağı",
+      "basis": "100g",
+      "kcal": 884,
+      "p": 0,
+      "c": 0,
+      "f": 100
+    },
+    {
+      "id": "seed_082",
+      "name": "Zeytin (siyah)",
+      "basis": "100g",
+      "kcal": 115,
+      "p": 0.8,
+      "c": 6.3,
+      "f": 10.7
+    },
+    {
+      "id": "seed_083",
+      "name": "Whey protein tozu",
+      "basis": "100g",
+      "kcal": 375,
+      "p": 80,
+      "c": 7,
+      "f": 5
+    },
+    {
+      "id": "seed_084",
+      "name": "Bal",
+      "basis": "100g",
+      "kcal": 304,
+      "p": 0.3,
+      "c": 82.4,
+      "f": 0
+    },
+    {
+      "id": "seed_085",
+      "name": "Şeker (beyaz)",
+      "basis": "100g",
+      "kcal": 387,
+      "p": 0,
+      "c": 100,
+      "f": 0
+    },
+    {
+      "id": "seed_086",
+      "name": "Reçel",
+      "basis": "100g",
+      "kcal": 250,
+      "p": 0.4,
+      "c": 66,
+      "f": 0.1
+    }
+  ],
+  "log": {
+    "2026-07-05": [
+      {
+        "id": "mr8ayha5a79s",
+        "foodId": "mr8asttm6qke",
+        "amount": 400
+      }
+    ]
+  },
+  "weights": [
+    {
+      "date": "2026-07-04",
+      "weight": 93.3
+    }
+  ],
+  "workouts": {
+    "2026-07-05": {
+      "lifts": [
+        {
+          "id": "mr8b5ltzw2uu",
+          "name": "Bench press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 100
+        },
+        {
+          "id": "mr8b5ltzole4",
+          "name": "Incline Machine Press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b5ltzrm7o",
+          "name": "Fly",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b5ltz569v",
+          "name": "Triceps push down",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ],
+      "cardio": [],
+      "note": ""
+    },
+    "2026-07-06": {
+      "lifts": [],
+      "cardio": [],
+      "note": ""
+    }
+  },
+  "programs": [
+    {
+      "id": "mr8aho02uv5f",
+      "name": "Chest",
+      "exercises": [
+        {
+          "id": "mr8ajrf9qxap",
+          "exId": "mr8ahw55t1dv",
+          "name": "Bench press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ak2odgvy7",
+          "exId": "mr8ai7d4465u",
+          "name": "Incline Machine Press",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ak9hg3p17",
+          "exId": "mr8aieaeh718",
+          "name": "Fly",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8akn67kv2r",
+          "exId": "mr8akh7d51xr",
+          "name": "Triceps push down",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "mr8aucn9wnt4",
+      "name": "PULL",
+      "exercises": [
+        {
+          "id": "mr8axiobcm7z",
+          "exId": "mr8auogqn6oa",
+          "name": "Hammer machine row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axn1q0ye9",
+          "exId": "mr8avhzdq5h8",
+          "name": "Single arm dikey row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axrd9t9n9",
+          "exId": "mr8auy7830sb",
+          "name": "Chest supported machine row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8axwcwphg1",
+          "exId": "mr8avsbdlf3j",
+          "name": "Chest supported DB row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8ay125nif2",
+          "exId": "mr8aw1f82eu1",
+          "name": "Curl machine",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    },
+    {
+      "id": "mr8az8xh45pi",
+      "name": "Omuz",
+      "exercises": [
+        {
+          "id": "mr8b3nqw0bau",
+          "exId": "mr8azhsk16l3",
+          "name": "OHP Machine",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b40sh9yw6",
+          "exId": "mr8azzqeo2bd",
+          "name": "Upright row",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b45zex55u",
+          "exId": "mr8b0sgmr6kq",
+          "name": "Rear delt",
+          "sets": 2,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b4bsifnn2",
+          "exId": "mr8b10ne9e2j",
+          "name": "Lateral raise",
+          "sets": 3,
+          "reps": 8,
+          "weight": 0
+        },
+        {
+          "id": "mr8b4gydv0h1",
+          "exId": "mr8b17fa1max",
+          "name": "Forearm",
+          "sets": 2,
+          "reps": 10,
+          "weight": 0
+        }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "mr8ahw55t1dv",
+      "name": "Bench press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8ai12ejhno",
+      "name": "Incline DB Press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8ai7d4465u",
+      "name": "Incline Machine Press",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8aieaeh718",
+      "name": "Fly",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8akh7d51xr",
+      "name": "Triceps push down",
+      "muscle": "Gogus"
+    },
+    {
+      "id": "mr8auogqn6oa",
+      "name": "Hammer machine row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8auy7830sb",
+      "name": "Chest supported machine row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8avhzdq5h8",
+      "name": "Single arm dikey row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8avsbdlf3j",
+      "name": "Chest supported DB row",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8aw1f82eu1",
+      "name": "Curl machine",
+      "muscle": "Pull"
+    },
+    {
+      "id": "mr8azhsk16l3",
+      "name": "OHP Machine",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8azzqeo2bd",
+      "name": "Upright row",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b0sgmr6kq",
+      "name": "Rear delt",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b10ne9e2j",
+      "name": "Lateral raise",
+      "muscle": "Omuz"
+    },
+    {
+      "id": "mr8b17fa1max",
+      "name": "Forearm",
+      "muscle": "Omuz"
+    }
+  ],
+  "targets": {
+    "kcal": 1500,
+    "p": 150,
+    "c": 123,
+    "f": 80
+  }
+}
