@@ -1648,6 +1648,7 @@ const SEED={
     "f": 80
   }
 };
+const SEED_VERSION = 2; /* Referans listesi sürümü. SEED içeriği değişince artır. */
 let S;
 try{
   const saved=localStorage.getItem(KEY);
@@ -1656,6 +1657,42 @@ try{
 S=Object.assign({}, DEFAULT, S);
 S.targets=Object.assign({}, DEFAULT.targets, S.targets||{});
 function save(){ localStorage.setItem(KEY, JSON.stringify(S)); }
+
+/* --- Sürüm kontrolü: yeni SEED geldiyse kullanıcıya sor --- */
+function maybePromptSeedUpdate(){
+  const cur = +(S._seedVersion || 0);
+  if(cur >= SEED_VERSION) return;
+  /* İlk kez SEED'den kuruluyorsa (kayıt yoktu) — sessizce sürümü işaretle */
+  const wasEmpty = !localStorage.getItem(KEY+'_seenOnce');
+  localStorage.setItem(KEY+'_seenOnce','1');
+  if(wasEmpty && cur===0){
+    S._seedVersion = SEED_VERSION; save(); return;
+  }
+  const ok = confirm(
+    'Yeni referans listesi geldi (sürüm '+SEED_VERSION+').\n\n'+
+    'Güncellenecekler: hazır besinler, egzersizler ve programlar.\n'+
+    'Korunacaklar: kendi eklediğin besinler/egzersizler/programlar, günlük yemek/antrenman/kilo kayıtların ve hedeflerin.\n\n'+
+    'Güncellensin mi?'
+  );
+  if(ok){
+    /* SEED-owned kayıtları merge et: aynı id varsa üzerine yaz, yoksa ekle. Kullanıcı kayıtlarına dokunma. */
+    const mergeById = (userArr, seedArr) => {
+      const out = userArr.slice();
+      const idx = new Map(out.map((x,i)=>[x.id,i]));
+      seedArr.forEach(s=>{
+        if(idx.has(s.id)) out[idx.get(s.id)] = s;
+        else out.push(s);
+      });
+      return out;
+    };
+    S.foods     = mergeById(S.foods||[],     SEED.foods||[]);
+    S.exercises = mergeById(S.exercises||[], SEED.exercises||[]);
+    S.programs  = mergeById(S.programs||[],  SEED.programs||[]);
+    toast('Referans listesi güncellendi (v'+SEED_VERSION+')');
+  }
+  S._seedVersion = SEED_VERSION;
+  save();
+}
 const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
 
 /* date helpers */
@@ -2433,6 +2470,15 @@ $('importFile').addEventListener('change',e=>{
 ============================================================ */
 $('wDate').value=todayISO();
 fillFoodSelect(); renderFoods(); renderDay(); renderWeights(); renderTraining(); renderPrograms(); renderExercises();
+
+/* Yeni SEED sürümü varsa sor (kullanıcı deneyimini bozmamak için biraz gecikmeli) */
+setTimeout(()=>{
+  const prevVer = +(S._seedVersion||0);
+  maybePromptSeedUpdate();
+  if(+(S._seedVersion||0) !== prevVer){
+    fillFoodSelect(); renderFoods(); renderPrograms(); renderExercises();
+  }
+}, 400);
 </script>
 </body>
 </html>
